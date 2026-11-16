@@ -43,3 +43,11 @@
 - Ảnh được tự thu nhỏ/tối ưu về JPEG trước khi tải lên Storage; hỗ trợ chọn ảnh từ thư viện iPhone nếu trình duyệt đọc được định dạng ảnh.
 - Có nút **Xóa vĩnh viễn**. Dữ liệu lịch sử đơn cũ vẫn giữ `gift_name` và `unit_price`; chỉ liên kết tới món quà bị đặt NULL. Ảnh cũ trong bucket cũng được dọn nếu là ảnh thuộc bucket `gifts`.
 - Storage policies đã được kiểm tra: chỉ admin được upload, cập nhật và xóa ảnh; khách chỉ đọc ảnh công khai.
+
+
+## Cập nhật 16/11/2026 – Nhạc và quyền nhân viên
+- Nhạc Noel được phối lại theo giai điệu Jingle Bells (tác phẩm public domain), với lớp chuông và piano/bass tổng hợp; bảng điều khiển được thu gọn thành nút nhỏ ở góc màn hình.
+- Trang quản trị có đăng nhập riêng cho nhân viên bằng mã do Admin cấp (8–32 ký tự chữ/số/_/-).
+- Nhân viên chỉ xem các đơn chưa có người nhận hoặc đơn do chính mình nhận; có thể nhận đơn chưa phân công. Cơ sở dữ liệu xử lý nhận đơn nguyên tử để tránh hai người nhận cùng một đơn.
+- Mã nhân viên được lưu dạng bcrypt hash; mỗi lần đổi mã, mọi phiên cũ của nhân viên đó bị thu hồi. Phiên có thời hạn 12 giờ; khóa nhân viên cũng thu hồi phiên.
+- Migration `supabase/nang-cap-phan-quyen-nhan-vien.sql` đã được áp dụng trực tiếp trên Supabase project hiện tại. Khi thay file trên hosting, không cần chạy lại migration.
